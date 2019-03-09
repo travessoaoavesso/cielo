@@ -49,11 +49,6 @@ $(function() {
         ordinal : '%dº'
     });
 
-    //setar data atual em $("#data-venda")
-    //$("#botao-calcular").click(calcularDatas);
-    //$("#botao-calcular").click(calcular);
-    //$("#botao-limpar").click(limpar);
-    alert("Carregamento inicial...");
     $("#tipo-cartao").change(habilitarParcelamento);
     $("#botao-limpar").prop( "disabled", true );
     $("#tabela-resultados").hide();
@@ -84,7 +79,6 @@ function desabilitarCamposAposCalculo(){
 	$("#data-venda").prop( "disabled", true );
 	$("#valor-venda").prop( "disabled", true );
 	$("#tipo-cartao").prop( "disabled", true );
-	//$("#bandeira-cartao").prop( "disabled", true );
 	$("#numero-parcelas").prop( "disabled", true );
 	$("#botao-calcular").prop( "disabled", true );
 	$("#botao-limpar").prop( "disabled", false );
@@ -94,7 +88,6 @@ function habilitarCamposParaCalculo(){
 	$("#data-venda").prop( "disabled", false );
 	$("#valor-venda").prop( "disabled", false );
 	$("#tipo-cartao").prop( "disabled", false );
-	//$("#bandeira-cartao").prop( "disabled", false );
 	$("#numero-parcelas").prop( "disabled", false );
 	$("#botao-calcular").prop( "disabled", false );
 	$("#botao-limpar").prop( "disabled", true );
