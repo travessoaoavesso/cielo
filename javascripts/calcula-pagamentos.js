@@ -59,21 +59,25 @@ $(function() {
 function calcular(){
 	var dataVenda = moment($("#data-venda").val());
 	var valorVenda = $("#valor-venda").val();
-	var tipoCartao = $("#tipo-cartao").val();
 	
-	//var bandeiraCartao = $("#bandeira-cartao").val();
-	var bandeiraCartao = 1;
+	if(validarCamposObrigatorios(dataVenda, valorVenda)){
 	
-	var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
-	
-	var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
-	var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
-	
-	montarTabelaResultados(numeroParcelas, datas, valores);
+		var tipoCartao = $("#tipo-cartao").val();
 
-	desabilitarCamposAposCalculo();
-	$("#botao-limpar").focus();
-	$("#tabela-resultados").show();
+		//var bandeiraCartao = $("#bandeira-cartao").val();
+		var bandeiraCartao = 1;
+
+		var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
+
+		var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
+		var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
+
+		montarTabelaResultados(numeroParcelas, datas, valores);
+
+		desabilitarCamposAposCalculo();
+		$("#botao-limpar").focus();
+		$("#tabela-resultados").show();
+	}
 
 }
 
@@ -284,4 +288,13 @@ function ehDizimaPeriodica(numerador, denominador){
 	if(strValor.indexOf("(") != -1 && strValor.indexOf(")") != -1){
 		return true;
 	} else return false;	
+}
+
+function validarCamposObrigatorios(dataVenda, valorVenda){
+	var retorno = true;
+	if(!dataVenda.isValid()){
+		alert("Data da Venda inválida!");
+		retorno = false;
+	}
+	return retorno;
 }
