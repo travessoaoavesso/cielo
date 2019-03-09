@@ -296,13 +296,6 @@ function validarCamposObrigatorios(dataVenda, valorVenda){
 		alert("Data da Venda inválida!");
 		retorno = false;
 	}
-	alert(valorVenda);
-	if(valorVenda == undefined){
-		alert("== undefined");
-	}
-	if(valorVenda.isNull()){
-		alert("isNull");
-	}
 	if(valorVenda <= 0){
 		alert("Valor da Venda inválido!");
 		retorno = false;
