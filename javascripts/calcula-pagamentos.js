@@ -297,9 +297,6 @@ function validarCamposObrigatorios(dataVenda, valorVenda){
 		retorno = false;
 	}
 	alert(valorVenda);
-	if(valorVenda.isUndefined()){
-		alert("isUndefined");
-	}
 	if(valorVenda == undefined){
 		alert("== undefined");
 	}
