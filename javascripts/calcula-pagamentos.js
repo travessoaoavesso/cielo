@@ -49,10 +49,11 @@ $(function() {
         ordinal : '%dº'
     });
 
-	//setar data atual em $("#data-venda")
+    //setar data atual em $("#data-venda")
     //$("#botao-calcular").click(calcularDatas);
-	$("#botao-calcular").click(calcular);
-    $("#botao-limpar").click(limpar);
+    //$("#botao-calcular").click(calcular);
+    //$("#botao-limpar").click(limpar);
+    alert("Carregamento inicial...");
     $("#tipo-cartao").change(habilitarParcelamento);
     $("#botao-limpar").prop( "disabled", true );
     $("#tabela-resultados").hide();
