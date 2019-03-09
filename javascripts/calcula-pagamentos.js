@@ -49,6 +49,8 @@ $(function() {
         ordinal : '%dº'
     });
 
+    $("#botao-calcular").click(calcular);
+    $("#botao-limpar").click(limpar);
     $("#tipo-cartao").change(habilitarParcelamento);
     $("#botao-limpar").prop( "disabled", true );
     $("#tabela-resultados").hide();
