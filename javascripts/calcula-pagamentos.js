@@ -63,7 +63,10 @@ function calcular(){
 	var dataVenda = moment($("#data-venda").val());
 	var valorVenda = $("#valor-venda").val();
 	var tipoCartao = $("#tipo-cartao").val();
-	var bandeiraCartao = $("#bandeira-cartao").val();
+	
+	//var bandeiraCartao = $("#bandeira-cartao").val();
+	var bandeiraCartao = 1;
+	
 	var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
 	
 	var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
@@ -81,7 +84,7 @@ function desabilitarCamposAposCalculo(){
 	$("#data-venda").prop( "disabled", true );
 	$("#valor-venda").prop( "disabled", true );
 	$("#tipo-cartao").prop( "disabled", true );
-	$("#bandeira-cartao").prop( "disabled", true );
+	//$("#bandeira-cartao").prop( "disabled", true );
 	$("#numero-parcelas").prop( "disabled", true );
 	$("#botao-calcular").prop( "disabled", true );
 	$("#botao-limpar").prop( "disabled", false );
@@ -91,7 +94,7 @@ function habilitarCamposParaCalculo(){
 	$("#data-venda").prop( "disabled", false );
 	$("#valor-venda").prop( "disabled", false );
 	$("#tipo-cartao").prop( "disabled", false );
-	$("#bandeira-cartao").prop( "disabled", false );
+	//$("#bandeira-cartao").prop( "disabled", false );
 	$("#numero-parcelas").prop( "disabled", false );
 	$("#botao-calcular").prop( "disabled", false );
 	$("#botao-limpar").prop( "disabled", true );
