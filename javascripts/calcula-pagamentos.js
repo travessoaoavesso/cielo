@@ -297,7 +297,7 @@ function validarCamposObrigatorios(dataVenda, valorVenda){
 		retorno = false;
 	}
 	if(valorVenda <= 0){
-		alert("Valor da Venda inválido!");
+		alert("Valor inválido!");
 		retorno = false;
 	}
 	return retorno;
