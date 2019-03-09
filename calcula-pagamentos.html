@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Travesso ao Avesso</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Funcionalidades</h1>
+        <p>Calcular datas de pagamento e valores a receber</p>
+      </header>
+      <section>
+		<p>Data da Venda: <input type="date" id="data-venda" autofocus="true" /></p>
+		<p>Valor: <input type="number" id="valor-venda" step="0.01" /></p>
+		<p>Tipo de Cartão: 
+		 <select id="tipo-cartao">
+		  	<option value="1" selected>Crédito</option>
+		 	<option value="2">Débito</option>
+		 </select>
+		</p>
+		<p>Bandeira do Cartão: 
+		 <select id="bandeira-cartao">
+		  	<option value="1">Diners</option>
+		 	<option value="2">Elo</option>
+		 	<option value="3">MasterCard</option>
+		 	<option value="4">Visa</option>
+		 	<option value="5">Amex</option>
+		 	<option value="6">Outros</option>
+		 </select>
+		</p>
+		<p id="parcelamento">Parcelas:
+		 <select id="numero-parcelas">
+		  	<option value="1">1</option>
+		 	<option value="2">2</option>
+		 	<option value="3">3</option>
+		 	<option value="4">4</option>
+		 	<option value="5">5</option>
+		 	<option value="6">6</option>
+		 	<option value="7">7</option>
+		 	<option value="8">8</option>
+		 	<option value="9">9</option>
+		 	<option value="10">10</option>
+		 	<option value="11">11</option>
+		 	<option value="12">12</option> 
+		 </select>
+		 </p> 
+		<p>
+			<input type="button" id="botao-calcular" value="Calcular" />
+			<input type="button" id="botao-limpar" value="Limpar" />
+		</p>
+		
+		<div id="resultados">
+			<table id="tabela-resultados">
+				<thead>	
+					<tr>
+						<th>Parcela</th>
+						<th>Data de Pagamento</th>
+						<th>Valor</th>
+				  	</tr>
+				</thead>
+				<tfoot></tfoot>
+				<tbody></tbody>
+			</table>
+		</div>
+		
+      </section>
+    </div>
+    <footer>
+      <p>Desenvolvido por <a href="mailto:jpaulo.pinheiro@htomail.com">jpaulopinheiro</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="javascripts/calcula-pagamentos.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/moment.min.js"></script>
+    <script src="javascripts/big.min.js"></script>
+    <script src="javascripts/fraction.min.js"></script>
+    <script src="javascripts/accounting.min.js"></script>    
+  </body>
+</html>
+
