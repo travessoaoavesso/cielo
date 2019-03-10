@@ -63,13 +63,8 @@ function calcular(){
 	if(validarCamposObrigatorios(dataVenda, valorVenda)){
 	
 		var tipoCartao = $("#tipo-cartao").val();
-
-		//var bandeiraCartao = $("#bandeira-cartao").val();
-		var bandeiraCartao = 1;
-
 		var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
-
-		var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
+		var datas = calcularDatas(dataVenda, tipoCartao, numeroParcelas);
 		var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 
 		montarTabelaResultados(numeroParcelas, datas, valores);
@@ -105,15 +100,9 @@ function obterNumeroParcelas(tipoCartao){
 	} else return $("#numero-parcelas").val();
 }
  
-function calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas) {
+function calcularDatas(dataVenda, tipoCartao, numeroParcelas) {
 	var datas;
-	// MasterCard
-	if(bandeiraCartao == 3){
-		datas = calcularDatasMC(dataVenda, numeroParcelas);
-	} else {
-		datas = calcularDatasVisa(dataVenda, numeroParcelas);		
-	}
-	
+	datas = calcularDatasMC(dataVenda, numeroParcelas);
 	return datas;
 }
 
@@ -145,7 +134,7 @@ function calcularDatasDepositosVisa(dataVenda, numeroParcelas){
 
 function calcularDatasMC(dataVenda, numeroParcelas){
 	var datas = new Array();
-	var prazo = 30;
+	var prazo = 31;
 	for(i=1;i<=numeroParcelas;i++){
 		var dataParcela = dataVenda.clone();
 		dataParcela.add(prazo, 'days');
