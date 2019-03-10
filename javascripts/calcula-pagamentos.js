@@ -102,6 +102,7 @@ function obterNumeroParcelas(tipoCartao){
  
 function calcularDatas(dataVenda, tipoCartao, numeroParcelas) {
 	var datas;
+	alert("CalcularDataMC");
 	datas = calcularDatasMC(dataVenda, numeroParcelas);
 	return datas;
 }
