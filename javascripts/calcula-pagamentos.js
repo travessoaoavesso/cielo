@@ -102,52 +102,37 @@ function obterNumeroParcelas(tipoCartao){
  
 function calcularDatas(dataVenda, tipoCartao, numeroParcelas) {
 	var datas;
-	alert("CalcularDataMC");
-	datas = calcularDatasMC(dataVenda, numeroParcelas);
+	alert("CalcularDatasNovo");
+	datas = calcularDatasPagamento(dataVenda, numeroParcelas);
 	return datas;
 }
 
-function calcularDatasVisa(dataVenda, numeroParcelas){
-	var datas = new Array();
-	var datasDepositos = calcularDatasDepositosVisa(dataVenda, numeroParcelas);
-	for(i=0;i<datasDepositos.length;i++){
-		var dataPagamento = datasDepositos[i].add(30, 'days');
+function calcularDatasPagamento(dataVenda, numeroParcelas){
+	var datasPagamento = new Array();
+	var datasParcelas = calcularDatasParcelas(dataVenda, numeroParcelas);
+	for(i=0;i<datasParcelas.length;i++){
+		var dataPagamento = datasParcelas[i];
 		var diaDaSemana = dataPagamento.day();
 		while(!ehDiaUtil(diaDaSemana)){
 			dataPagamento.add(1, 'days');
 			diaDaSemana = dataPagamento.day();
 		}
-		datas.push(dataPagamento);
+		datasPagamento.push(dataPagamento);
 	}
-	return datas;
+	return datasPagamento;
 }
 
-function calcularDatasDepositosVisa(dataVenda, numeroParcelas){
-	var datasDepositos = new Array();
-	datasDepositos.push(moment(dataVenda));
+function calcularDatasParcelas(dataVenda, numeroParcelas){
+	var datasParcelas = new Array();
+	var data1aParcela = dataVenda.clone();
+	data1aParcela.add(31, 'days');
+	datasParcelas.push(moment(data1aParcela));
 	for(i=1;i<numeroParcelas;i++){
-		var dataDeposito = dataVenda.clone();
-		dataDeposito.add(i, 'months');
-		datasDepositos.push(moment(dataDeposito));
+		var dataProximaParcela = data1aParcela.clone();
+		dataProximaParcela.add(i, 'months');
+		datasParcelas.push(moment(dataProximaParcela));
 	}
-	return datasDepositos;
-}
-
-function calcularDatasMC(dataVenda, numeroParcelas){
-	var datas = new Array();
-	var prazo = 31;
-	for(i=1;i<=numeroParcelas;i++){
-		var dataParcela = dataVenda.clone();
-		dataParcela.add(prazo, 'days');
-		var diaDaSemana = dataParcela.day();
-		while(!ehDiaUtil(diaDaSemana)){
-			dataParcela.add(1, 'days');
-			diaDaSemana = dataParcela.day();
-		}
-		datas.push(dataParcela);
-		prazo=prazo+30;
-	}
-	return datas;
+	return datasParcelas;
 }
 
 function limpar() {
