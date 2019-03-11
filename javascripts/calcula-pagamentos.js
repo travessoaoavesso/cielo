@@ -105,14 +105,13 @@ function obterNumeroParcelas(tipoCartao){
  
 function calcularDatas(dataVenda, tipoCartao, numeroParcelas) {
 	var datas;
-	alert("CalcularDatasNovo");
-	datas = calcularDatasPagamento(dataVenda, numeroParcelas);
+	datas = calcularDatasPagamento(dataVenda, tipoCartao, numeroParcelas);
 	return datas;
 }
 
-function calcularDatasPagamento(dataVenda, numeroParcelas){
+function calcularDatasPagamento(dataVenda, tipoCartao, numeroParcelas){
 	var datasPagamento = new Array();
-	var datasParcelas = calcularDatasParcelas(dataVenda, numeroParcelas);
+	var datasParcelas = calcularDatasParcelas(dataVenda, tipoCartao, numeroParcelas);
 	for(i=0;i<datasParcelas.length;i++){
 		var dataPagamento = datasParcelas[i];
 		var diaDaSemana = dataPagamento.day();
@@ -125,10 +124,14 @@ function calcularDatasPagamento(dataVenda, numeroParcelas){
 	return datasPagamento;
 }
 
-function calcularDatasParcelas(dataVenda, numeroParcelas){
+function calcularDatasParcelas(dataVenda, tipoCartao, numeroParcelas){
 	var datasParcelas = new Array();
 	var data1aParcela = dataVenda.clone();
-	data1aParcela.add(31, 'days');
+	if(tipoCartao == 2){
+		data1aParcela.add(1, 'days');
+	} else {
+		data1aParcela.add(31, 'days');
+	}
 	datasParcelas.push(moment(data1aParcela));
 	for(i=1;i<numeroParcelas;i++){
 		var dataProximaParcela = data1aParcela.clone();
