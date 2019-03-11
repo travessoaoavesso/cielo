@@ -23,33 +23,38 @@
 		<p>Data da Venda: <input type="date" id="data-venda" autofocus="true" /></p>
 		<p>Valor: <input type="number" id="valor-venda" step="0.01" /></p>
 		<p>Tipo de Cartão: 
-		 <select id="tipo-cartao">
-		  	<option value="1" selected>Crédito</option>
-		 	<option value="2">Débito</option>
-		 </select>
+			<select id="tipo-cartao">
+				<option value="1" selected>Crédito</option>
+				<option value="2">Débito</option>
+			</select>
 		</p>
 		<p id="parcelamento">Parcelas:
-		 <select id="numero-parcelas">
-		  	<option value="1">1</option>
-		 	<option value="2">2</option>
-		 	<option value="3">3</option>
-		 	<option value="4">4</option>
-		 	<option value="5">5</option>
-		 	<option value="6">6</option>
-		 	<option value="7">7</option>
-		 	<option value="8">8</option>
-		 	<option value="9">9</option>
-		 	<option value="10">10</option>
-		 	<option value="11">11</option>
-		 	<option value="12">12</option> 
-		 </select>
+			<select id="numero-parcelas">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option> 
+			 </select>
 		 </p> 
-		<p>
+			 <p>Bandeira do Cartão: 
+			 <select id="bandeira-cartao">
+				<option value="1">Amex</option>
+				<option value="2">Outras</option>
+			 </select>
+		 </p>	      
+		 <p>
 			<input type="button" id="botao-calcular" value="Calcular" />
 			<input type="button" id="botao-limpar" value="Limpar" />
-		</p>
-		
-		<div id="resultados">
+		 </p>		
+		 <div id="resultados">
 			<table id="tabela-resultados">
 				<thead>	
 					<tr>
@@ -61,8 +66,7 @@
 				<tfoot></tfoot>
 				<tbody></tbody>
 			</table>
-		</div>
-		
+		 </div>		
       </section>
     </div>
     <footer>
