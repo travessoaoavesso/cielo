@@ -64,8 +64,9 @@ function calcular(){
 	
 		var tipoCartao = $("#tipo-cartao").val();
 		var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
+		var bandeiraCartao = $("#bandeira-cartao").val();
 		var datas = calcularDatas(dataVenda, tipoCartao, numeroParcelas);
-		var valores = calcularValores(valorVenda, tipoCartao, 1, numeroParcelas);
+		var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 
 		montarTabelaResultados(numeroParcelas, datas, valores);
 
@@ -81,6 +82,7 @@ function desabilitarCamposAposCalculo(){
 	$("#valor-venda").prop( "disabled", true );
 	$("#tipo-cartao").prop( "disabled", true );
 	$("#numero-parcelas").prop( "disabled", true );
+	$("#bandeira-cartao").prop( "disabled", true );
 	$("#botao-calcular").prop( "disabled", true );
 	$("#botao-limpar").prop( "disabled", false );
 }
@@ -90,6 +92,7 @@ function habilitarCamposParaCalculo(){
 	$("#valor-venda").prop( "disabled", false );
 	$("#tipo-cartao").prop( "disabled", false );
 	$("#numero-parcelas").prop( "disabled", false );
+	$("#bandeira-cartao").prop( "disabled", false );
 	$("#botao-calcular").prop( "disabled", false );
 	$("#botao-limpar").prop( "disabled", true );
 }
@@ -230,21 +233,21 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 	var percentualDesconto;
 	if(tipoCartao == 1){
 		// cartão de crédito
-		if(bandeiraCartao == 5){
+		if(bandeiraCartao == 1){
+			// Amex
 			percentualDesconto = new Big(0.041);
 		} else {
+			// Outras
 			switch(numeroParcelas){
 				case 1:
-					percentualDesconto = new Big(0.0252);
+					percentualDesconto = new Big(0.025);
 					break;
 				case 2:
 				case 3:
-					percentualDesconto = new Big(0.0327);
-					break;
 				case 4:
 				case 5:
 				case 6:
-					percentualDesconto = new Big(0.0352);
+					percentualDesconto = new Big(0.032);
 					break;
 				default:
 					percentualDesconto = new Big(0.0402);
@@ -253,7 +256,7 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 		}
 	} else if(tipoCartao == 2){
 		// cartão de débito	
-		percentualDesconto = new Big(0.0174);
+		percentualDesconto = new Big(0.017);
 	}
 	return percentualDesconto;
 }
