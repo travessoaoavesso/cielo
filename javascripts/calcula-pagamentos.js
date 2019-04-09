@@ -65,7 +65,7 @@ function calcular(){
 		var tipoCartao = $("#tipo-cartao").val();
 		var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
 		var bandeiraCartao = $("#bandeira-cartao").val();
-		var datas = calcularDatas(dataVenda, tipoCartao, numeroParcelas);
+		var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 		var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 
 		montarTabelaResultados(numeroParcelas, datas, valores);
@@ -103,15 +103,15 @@ function obterNumeroParcelas(tipoCartao){
 	} else return $("#numero-parcelas").val();
 }
  
-function calcularDatas(dataVenda, tipoCartao, numeroParcelas) {
+function calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas) {
 	var datas;
-	datas = calcularDatasPagamento(dataVenda, tipoCartao, numeroParcelas);
+	datas = calcularDatasPagamento(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 	return datas;
 }
 
-function calcularDatasPagamento(dataVenda, tipoCartao, numeroParcelas){
+function calcularDatasPagamento(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas){
 	var datasPagamento = new Array();
-	var datasParcelas = calcularDatasParcelas(dataVenda, tipoCartao, numeroParcelas);
+	var datasParcelas = calcularDatasParcelas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 	for(i=0;i<datasParcelas.length;i++){
 		var dataPagamento = datasParcelas[i];
 		var diaDaSemana = dataPagamento.day();
@@ -124,13 +124,24 @@ function calcularDatasPagamento(dataVenda, tipoCartao, numeroParcelas){
 	return datasPagamento;
 }
 
-function calcularDatasParcelas(dataVenda, tipoCartao, numeroParcelas){
+function calcularDatasParcelas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas){
 	var datasParcelas = new Array();
 	var data1aParcela = dataVenda.clone();
 	if(tipoCartao == 2){
 		data1aParcela.add(1, 'days');
 	} else {
-		data1aParcela.add(31, 'days');
+		switch(bandeiraCartao){
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				data1aParcela.add(30, 'days');
+				break;
+			default:
+				data1aParcela.add(31, 'days');
+				break;
+		}
 	}
 	datasParcelas.push(moment(data1aParcela));
 	for(i=1;i<numeroParcelas;i++){
@@ -236,30 +247,94 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 	var percentualDesconto;
 	if(tipoCartao == 1){
 		// cartão de crédito
-		if(bandeiraCartao == 1){
-			// Amex
-			percentualDesconto = new Big(0.041);
-		} else {
-			// Outras
-			switch(numeroParcelas){
-				case 1:
-					percentualDesconto = new Big(0.025);
-					break;
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 6:
-					percentualDesconto = new Big(0.032);
-					break;
-				default:
-					percentualDesconto = new Big(0.0402);
-					break;
-			}
+		switch(bandeiraCartao){
+			case 1: // Visa
+			case 2: // Mastercard
+			case 3: // Elo
+			case 4: // Diners
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.021);
+						break;
+					default:
+						percentualDesconto = new Big(0.025);
+						break;
+				}
+				break;
+			case 5: // Jcb
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.0252);
+						break;
+					default:
+						percentualDesconto = new Big(0.0327);
+						break;
+				}
+				break;	
+			case 6: // Amex
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.0314);
+						break;
+					default:
+						percentualDesconto = new Big(0.0402);
+						break;
+				}
+				break;
+			case 7: // Hipercard
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.0319);
+						break;
+					case 2:
+					case 3:	
+						percentualDesconto = new Big(0.0442);
+						break;
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0319);
+						break;						
+				}
+				break;
+			case 8: // Sorocred
+			case 9: // Agiplan
+			case 10: // Banescrad
+			case 11: // Cabal
+			case 12: // CredSystem
+			case 13: // CredZ
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.042);
+						break;
+					case 2:
+					case 3:	
+						percentualDesconto = new Big(0.0495);
+						break;
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.052);
+						break;						
+				}
+				break;
 		}
 	} else if(tipoCartao == 2){
 		// cartão de débito	
-		percentualDesconto = new Big(0.017);
+		switch(bandeiraCartao){
+			case 1:
+			case 2:
+			case 3:
+				percentualDesconto = new Big(0.015);
+				break;
+			case 10:
+			case 11:	
+				percentualDesconto = new Big(0.029);
+				break;
+			default:
+				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão / Bandeira do Cartão');
+				break;						
+		}
 	}
 	return percentualDesconto;
 }
