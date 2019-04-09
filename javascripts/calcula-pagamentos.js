@@ -321,6 +321,7 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 		}
 	} else if(tipoCartao == 2){
 		// cartão de débito	
+		alert('bandeiraCartao = ' + bandeiraCartao);
 		switch(bandeiraCartao){
 			case 1:
 			case 2:
@@ -332,7 +333,7 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 				percentualDesconto = new Big(0.029);
 				break;
 			default:
-				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão / Bandeira do Cartão');
+				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
 				break;						
 		}
 	}
