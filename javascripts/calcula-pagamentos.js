@@ -317,7 +317,6 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 		}
 	} else if(tipoCartao == 2){
 		// cartão de débito	
-		alert('bandeiraCartao = ' + bandeiraCartao);
 		switch(bandeiraCartao){
 			case 1:
 			case 2:
