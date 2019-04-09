@@ -64,7 +64,7 @@ function calcular(){
 	
 		var tipoCartao = $("#tipo-cartao").val();
 		var numeroParcelas = parseInt(obterNumeroParcelas(tipoCartao));
-		var bandeiraCartao = parseInt(obterNumeroParcelas($("#bandeira-cartao").val());
+		var bandeiraCartao = parseInt($("#bandeira-cartao").val());
 		var datas = calcularDatas(dataVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 		var valores = calcularValores(valorVenda, tipoCartao, bandeiraCartao, numeroParcelas);
 
