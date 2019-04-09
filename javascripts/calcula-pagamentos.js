@@ -257,7 +257,6 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 						break;
 					default:
 						percentualDesconto = new Big(0.025);
-						break;
 				}
 				break;
 			case 5: // Jcb
@@ -267,7 +266,6 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 						break;
 					default:
 						percentualDesconto = new Big(0.0327);
-						break;
 				}
 				break;	
 			case 6: // Amex
@@ -277,7 +275,6 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 						break;
 					default:
 						percentualDesconto = new Big(0.0402);
-						break;
 				}
 				break;
 			case 7: // Hipercard
