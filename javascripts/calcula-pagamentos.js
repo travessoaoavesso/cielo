@@ -140,7 +140,6 @@ function calcularDatasParcelas(dataVenda, tipoCartao, bandeiraCartao, numeroParc
 				break;
 			default:
 				data1aParcela.add(31, 'days');
-				break;
 		}
 	}
 	datasParcelas.push(moment(data1aParcela));
@@ -333,8 +332,7 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 				percentualDesconto = new Big(0.029);
 				break;
 			default:
-				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
-				break;						
+				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');				
 		}
 	}
 	return percentualDesconto;
