@@ -132,14 +132,12 @@ function calcularDatasParcelas(dataVenda, tipoCartao, bandeiraCartao, numeroParc
 	} else {
 		switch(bandeiraCartao){
 			case 1:
-			case 2:
 			case 3:
 			case 4:
-			case 5:
-				data1aParcela.add(30, 'days');
+				data1aParcela.add(1, 'months');
 				break;
 			default:
-				data1aParcela.add(31, 'days');
+				data1aParcela.add(30, 'days');
 		}
 	}
 	datasParcelas.push(moment(data1aParcela));
@@ -249,14 +247,54 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 		switch(bandeiraCartao){
 			case 1: // Visa
 			case 2: // Mastercard
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.0211);
+						break;
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0251);
+						break;
+					default:
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+						break;
+				}
+				break;
 			case 3: // Elo
+				switch(numeroParcelas){
+					case 1:
+						percentualDesconto = new Big(0.0267);
+						break;
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0299);
+						break;
+					default:
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+						break;						
+				}
+				break;
 			case 4: // Diners
 				switch(numeroParcelas){
 					case 1:
-						percentualDesconto = new Big(0.021);
+						percentualDesconto = new Big(0.0252);
+						break;
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0251);
 						break;
 					default:
-						percentualDesconto = new Big(0.025);
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+						break;						
 				}
 				break;
 			case 5: // Jcb
@@ -264,17 +302,43 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 					case 1:
 						percentualDesconto = new Big(0.0252);
 						break;
-					default:
+					case 2:
+					case 3:
 						percentualDesconto = new Big(0.0327);
+						break;
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0352);
+						break;
+					case 7:
+					case 8:
+					case 9:
+					case 10:
+					case 11:
+					case 12:
+						percentualDesconto = new Big(0.0402);
+						break;
+					default:
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+						break;						
 				}
 				break;	
 			case 6: // Amex
 				switch(numeroParcelas){
 					case 1:
-						percentualDesconto = new Big(0.0314);
+						percentualDesconto = new Big(0.0315);
+						break;
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						percentualDesconto = new Big(0.0403);
 						break;
 					default:
-						percentualDesconto = new Big(0.0402);
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+						break;						
 				}
 				break;
 			case 7: // Hipercard
@@ -283,13 +347,24 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 						percentualDesconto = new Big(0.0319);
 						break;
 					case 2:
-					case 3:	
+					case 3:
 						percentualDesconto = new Big(0.0442);
 						break;
 					case 4:
 					case 5:
 					case 6:
-						percentualDesconto = new Big(0.0319);
+						percentualDesconto = new Big(0.0467);
+						break;
+					case 7:
+					case 8:
+					case 9:
+					case 10:
+					case 11:
+					case 12:
+						percentualDesconto = new Big(0.0519);
+						break;
+					default:
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
 						break;						
 				}
 				break;
@@ -311,6 +386,17 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 					case 5:
 					case 6:
 						percentualDesconto = new Big(0.052);
+						break;
+					case 7:
+					case 8:
+					case 9:
+					case 10:
+					case 11:
+					case 12:
+						percentualDesconto = new Big(0.057);
+						break;
+					default:
+						alert('Parcelamento não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
 						break;						
 				}
 				break;
@@ -320,15 +406,18 @@ function obterPercentualDesconto(tipoCartao, bandeiraCartao, numeroParcelas){
 		switch(bandeiraCartao){
 			case 1:
 			case 2:
+				percentualDesconto = new Big(0.0151);
+				break;
 			case 3:
-				percentualDesconto = new Big(0.015);
+				percentualDesconto = new Big(0.0164);
 				break;
 			case 10:
 			case 11:	
 				percentualDesconto = new Big(0.029);
 				break;
 			default:
-				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');				
+				alert('Percentual de desconto não cadastrado para esta combinação Tipo de Cartão/Bandeira do Cartão.');
+				break;
 		}
 	}
 	return percentualDesconto;
